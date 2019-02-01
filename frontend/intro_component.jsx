@@ -10,7 +10,7 @@ export class IntroComponent extends React.Component {
 	this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleSubmit(event){
+	handleSubmit(event, history){
 		event.preventDefault();
 		let userName = document.getElementById(playerName).value
 		let gameId = document.getElementById(gameCode).value
@@ -20,7 +20,7 @@ export class IntroComponent extends React.Component {
 		}
 
 		$.post('/api/game/', payload).then((result) =>{
-			history.push('/game/' + result.game.id);
+			history.push('/game/' + result.game.id + '/pending');
 		})
 	}
 

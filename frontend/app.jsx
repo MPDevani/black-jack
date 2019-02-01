@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom'
 import React from 'react'
 import {BrowserRouter, Route, Switch} from'react-router-dom'
 import {IntroComponent} from './intro_component.jsx'
+import {GamePendingComponent} from './game_pending_component.jsx'
 
 class BlackJackApp extends React.Component {
 	render() {
@@ -9,6 +10,7 @@ class BlackJackApp extends React.Component {
 			<div>
 			<Switch>
 				<Route path="/" exact component={IntroComponent} />
+				<Route path="/game/:gameId/pending" component={GamePendingComponent} />
 			</Switch>	
 			</div>
 		</BrowserRouter>

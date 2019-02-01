@@ -38,7 +38,20 @@ app.post('/api/game/', (req,res) => {
 		})
 	})
 
-}) 
+})
+
+app.get('/api/game/:gameId/players', (req,res) =>{
+	return Game.findOne({
+		where: {
+			id: req.params.gameId
+		}
+	}).then((game) => {
+		return game.getPlayers();
+	}).then((players) => {
+		console.log(players)
+		return res.json({players: players})
+		}) 
+	}) 
 
 app.get("/*", (req, res) => {
 	res.sendFile(`${__dirname}/frontend/index.html`)
