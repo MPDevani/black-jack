@@ -21,10 +21,11 @@ export class GamePendingComponent extends React.Component {
 		})
 	}
 
-	startGame(event){
+	startGame(event, history){
 		event.preventDefault();
-		$.get('/api/game/' + this.gameId + '/start').then((results) => {
-			console.log(results)
+		$.post('/api/game/' + this.gameId + '/start').then((results) => {
+			console.log(results);
+			history.push('/game/' + results.game.id + '/start')
 		})
 	}
 
@@ -37,14 +38,15 @@ export class GamePendingComponent extends React.Component {
 				return (
 					<li key={player.id}> {player.userName}</li>
 				)})
-			let result = (<div>
+			let GamePendingForm = withRouter(({history}) => (<div>
 					<h1>Game Has Not Started Yet</h1>
 					<h3>Players:</h3>
 					<ul>
 						{playerList}
-					</ul>	
-				</div>);	
-				return result
+					</ul>
+					<button onClick={(event) => this.startGame(event, history)}>Start Game</button>	
+				</div>))	
+				return <GamePendingForm />
 		}
 	}	
 }

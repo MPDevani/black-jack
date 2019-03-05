@@ -2,7 +2,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Game = sequelize.define('Game', {
   	id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    gameId: DataTypes.STRING
+    gameId: DataTypes.STRING,
+    gameStarted: DataTypes.BOOLEAN
   }, {});
   Game.associate = function(models) {
     Game.hasMany(models.Players, {foreignKey: 'gameId'})
@@ -11,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Game.belongsTo(models.Players, {as:'leader', foreignKey: 'leaderId'})
     Game.belongsTo(models.Players, {as:'currentTurn', foreignKey: 'currentTurnId'})
+    
   };
   return Game;
 };

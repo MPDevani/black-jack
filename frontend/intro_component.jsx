@@ -25,7 +25,7 @@ export class IntroComponent extends React.Component {
 	}
 
 	render(){
-		let GameForm = withRouter(({history}) => ( //explain this function
+		let GameForm = withRouter(({history}) => ( 
 		<div>
 			<form onSubmit = {(event) => this.handleSubmit(event, history)}>
 			<label>
